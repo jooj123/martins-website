@@ -1,0 +1,141 @@
+:root {
+  --terminal-text-color: #00C853;
+  --terminal-background-color: #212121;
+  --font-family: 'Source Code Pro', monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::before, ::after {
+  box-sizing: border-box;
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: var(--terminal-text-color); }
+}
+
+@keyframes typing {
+  from { width: 100%; }
+  to { width: 0; }
+}
+
+@-webkit-keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: var(--terminal-text-color); }
+}
+
+@-webkit-keyframes typing {
+  from { width: 100%; }
+  to { width: 0; }
+}
+
+body {
+  font-family: var(--font-family);
+  margin: 0;
+  font-size: 62.5%;
+}
+
+canvas {
+  image-rendering: optimizeSpeed;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: -o-crisp-edges;
+  image-rendering: crisp-edges;
+  -ms-interpolation-mode: nearest-neighbor;
+}
+
+.console {
+  background-color: var(--terminal-background-color);
+  position: fixed;
+  min-height: 50px;
+  display: block;
+  border-top: 20px solid grey;
+  padding: 15px;
+  width: 420px;
+  bottom: 0;
+  border-top-left-radius: 5px 5px;
+  border-top-right-radius: 5px 5px;
+}
+
+.prompt {
+  float: left;
+  padding: 15px 15px;
+  padding: 0px 15px;
+  clear: both;
+}
+
+.prompt::before {
+  content: ">";
+  color: var(--terminal-text-color);
+  font-size: 2.0em;
+  display: inline-block;
+  padding-right: 5px;
+}
+
+.close {
+  width: 10px;
+  border-radius: 50%;
+  height: 10px;
+  display: inline-block;
+  background-color: red;
+  position: absolute;
+  top: -15px;
+  left: 4px;
+}
+
+.minimise {
+  width: 10px;
+  border-radius: 50%;
+  height: 10px;
+  display: inline-block;
+  background-color: yellow;
+  position: absolute;
+  top: -15px;
+  left: 21px;
+}
+
+.maximise {
+  width: 10px;
+  border-radius: 50%;
+  height: 10px;
+  display: inline-block;
+  background-color: green;
+  position: absolute;
+  top: -15px;
+  left: 38px;
+}
+
+.command {
+  margin: 0;
+  padding: 0;
+  color: var(--terminal-text-color);
+  position: relative;
+  display: inline-block;
+  font-size: 2.0em;
+  font-weight: bold;
+}
+
+.command span {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 0;
+  background: var(--terminal-background-color);
+  border-left: .5em solid;
+  box-sizing: border-box;
+  -webkit-animation: typing 3s steps(13, end) forwards alternate, blink-caret 1s step-end infinite;
+  animation: typing 3s steps(13, end) forwards alternate, blink-caret 1s step-end infinite;
+}
+
+main {
+  display: none;
+}
+
+main.active {
+  display: grid;
+}
+
